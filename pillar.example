@@ -1,0 +1,6 @@
+nsca:
+  lookup:
+    password: DayU10tdZG
+    server:
+      pid_file: /var/run/nsca.pid
+      alternate_dump_file: /var/run/icinga2/nsca.dump

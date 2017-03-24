@@ -1,0 +1,28 @@
+{% set nsca = salt['grains.filter_by'](
+	{
+		'default': {
+			'server': {
+				'pkg': 'nsca',
+				'cfg': '/etc/nsca.cfg',
+				'log_facility': 'daemon',
+				'pid_file': '/var/run/nagios/nsca.pid',
+				'server_port': 5667,
+				'nsca_user': 'nagios',
+				'nsca_group': 'nogroup',
+				'debug': 0,
+				'command_file': '/var/run/icinga2/cmd/icinga2.cmd',
+				'alternate_dump_file': '/var/run/nagios/nsca.dump',
+				'aggregate_writes': 0,
+				'append_to_file': 0,
+				'max_packet_age': 30,
+			},
+			'client': {
+				'pkg': 'nsca-client',
+				'cfg': '/etc/send_nsca.cfg',
+			},
+			'cryption_method': 1,
+		},
+	},
+	merge=salt['pillar.get']('nsca:lookup', {}),
+	default='default'
+) %}
